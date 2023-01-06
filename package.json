@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@sapphire/framework": "^3.1.4",
+    "discord.js": "13.x"
+  },
+  "name": "Bee",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}
