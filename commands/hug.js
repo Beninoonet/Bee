@@ -1,3 +1,5 @@
+require('dotenv').config()
+const giphy = require('giphy-api')(process.env.GIPHY_API_KEY)
 const { Command } = require('@sapphire/framework');
 const { ApplicationCommandType } = require('discord-api-types/v9');
 const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
@@ -5,7 +7,7 @@ class AvatarCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
-      description: 'Give an avatar of member'
+      description: 'Give a userinfo'
     });
   }
   registerApplicationCommands(registry) {
@@ -21,17 +23,19 @@ class AvatarCommand extends Command {
    */
   async contextMenuRun(interaction) {
     if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
-      const embed = new MessageEmbed()
-      .setColor(interaction.targetMember.displayHexColor)
-      .setImage(interaction.targetMember.user.displayAvatarURL({ dynamic: true, size: 512 }))
-      .setTitle(`Avatar de ${interaction.targetMember.displayName}`)
-      .setFooter({
-        text: `${interaction.user.username}`,
-        iconURL: `${interaction.user.displayAvatarURL({ dynamic: true})}`
-      })
-      .setTimestamp();
-      await interaction.reply({
-        embeds: [embed],
+      giphy.search({q: 'anime hug', rating: 'g'}, function(err, res){
+        var totalResponses = res.data.length;
+        var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
+        var responseFinal = res.data[responseIndex];
+        const hugbed = new MessageEmbed()
+        .setColor('RED')
+        .setDescription(`${interaction.user} fait un câlin à ${interaction.targetMember.user} 💖`)
+        .setImage(responseFinal.images.fixed_height.url)
+        
+        interaction.reply({
+          embeds: [hugbed],
+        })
+  
       })
     }
   }
