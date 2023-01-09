@@ -1,7 +1,7 @@
 const { Command } = require('@sapphire/framework');
 const { ApplicationCommandType } = require('discord-api-types/v9');
 const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
-class SlashCommand extends Command {
+class UserCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
@@ -22,7 +22,7 @@ class SlashCommand extends Command {
   async contextMenuRun(interaction) {
     if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
       const embed = new MessageEmbed()
-      .setColor("RANDOM")
+      .setColor(interaction.targetMember.displayHexColor)
       .setThumbnail(interaction.targetMember.user.displayAvatarURL({ dynamic: true }))
       .setTitle(`Profil de ${interaction.targetMember.user.username}`)
       .addFields(
@@ -41,5 +41,5 @@ class SlashCommand extends Command {
   }
 }
 module.exports = {
-  SlashCommand
+  UserCommand
 };
