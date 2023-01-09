@@ -3,11 +3,11 @@ const giphy = require('giphy-api')(process.env.GIPHY_API_KEY)
 const { Command } = require('@sapphire/framework');
 const { ApplicationCommandType } = require('discord-api-types/v9');
 const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
-class HugCommand extends Command {
+class SlapCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
-      description: 'Event to hug a member with gif'
+      description: 'Event to slap a member with gif'
     });
   }
   registerApplicationCommands(registry) {
@@ -23,17 +23,17 @@ class HugCommand extends Command {
    */
   async contextMenuRun(interaction) {
     if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
-      giphy.search({q: 'anime hug', rating: 'g'}, function(err, res){
+      giphy.search({q: 'anime kiss', rating: 'g'}, function(err, res){
         var totalResponses = res.data.length;
         var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
         var responseFinal = res.data[responseIndex];
         const hugbed = new MessageEmbed()
-        .setColor('RED')
-        .setDescription(`${interaction.user} fait un câlin à ${interaction.targetMember.user} 💖`)
+        .setColor('FUCHSIA')
+        .setDescription(`${interaction.user} fait un bisou à ${interaction.targetMember.user} 💖`)
         .setImage(responseFinal.images.fixed_height.url)
         
         interaction.reply({
-          content: `${interaction.targetMember.user} 💖`,
+          content: `${interaction.targetMember.user} 😚`,
           embeds: [hugbed]
         })
   
@@ -42,5 +42,5 @@ class HugCommand extends Command {
   }
 }
 module.exports = {
-  HugCommand
+  SlapCommand
 };
