@@ -1,5 +1,4 @@
 const { Command } = require('@sapphire/framework');
-const { ApplicationCommandType } = require('discord-api-types/v9');
 const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
 class UserCommand extends Command {
   constructor(context, options) {
@@ -9,17 +8,15 @@ class UserCommand extends Command {
     });
   }
   registerApplicationCommands(registry) {
-    registry.registerContextMenuCommand((builder) =>
-      builder //
-        .setName(this.name)
-        .setType(ApplicationCommandType.User)
+    registry.registerChatInputCommand((builder) =>
+    builder.setName('userinfo').setDescription('Give an information of member')
     );
   }
   /**
    * 
    * @param {Interaction} interaction 
    */
-  async contextMenuRun(interaction) {
+  async chatInputRun(interaction) {
     if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
       const embed = new MessageEmbed()
       .setColor(interaction.targetMember.displayHexColor)

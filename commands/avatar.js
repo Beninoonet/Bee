@@ -9,17 +9,15 @@ class AvatarCommand extends Command {
     });
   }
   registerApplicationCommands(registry) {
-    registry.registerContextMenuCommand((builder) =>
-      builder //
-        .setName(this.name)
-        .setType(ApplicationCommandType.User)
+    registry.registerChatInputCommand((builder) =>
+    builder.setName('avatar').setDescription('Give an avatar of memver')
     );
   }
   /**
    * 
    * @param {Interaction} interaction 
    */
-  async contextMenuRun(interaction) {
+  async chatInputRun(interaction) {
     if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
       const embed = new MessageEmbed()
       .setColor(interaction.targetMember.displayHexColor)
