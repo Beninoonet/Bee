@@ -1,13 +1,16 @@
 require('dotenv').config()
 const giphy = require('giphy-api')(process.env.GIPHY_API_KEY)
 const { Command } = require('@sapphire/framework');
+
 const { ApplicationCommandType } = require('discord-api-types/v9');
 const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
 class HugCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
-      description: 'Event to hug a member with gif'
+      description: 'Event to hug a member with gif',
+      cooldownDelay: 5_000 // 10_000 milliseconds (10 seconds)
+      
     });
   }
   registerApplicationCommands(registry) {

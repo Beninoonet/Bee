@@ -7,7 +7,8 @@ class SlapCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
-      description: 'Event to slap a member with gif'
+      description: 'Event to slap a member with gif',
+      cooldownDelay: 5_000 // 10_000 milliseconds (10 seconds)
     });
   }
   registerApplicationCommands(registry) {
