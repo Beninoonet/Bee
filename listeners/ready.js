@@ -17,7 +17,7 @@ class ReadyListener extends Listener {
     const { username, id } = client.user;
     this.container.logger.info(`Successfully logged in as ${username} (${id})`);
 
-    client.user.setActivity('Gros câlin <3', {type: 'WATCHING' })
+    client.user.setActivity('Please code me.', {type: 'WATCHING' })
   }
 }
 

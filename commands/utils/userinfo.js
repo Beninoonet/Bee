@@ -1,11 +1,12 @@
-const { Command } = require('@sapphire/framework');
+const { Command, UserPermissionsPrecondition } = require('@sapphire/framework');
 const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
 class UserCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
-      description: 'Give a userinfo'
-    });
+      description: 'Give a userinfo',
+    requiredUserPermissions: ['MODERATE_MEMBERS']})
+    
   }
   registerApplicationCommands(registry) {
     registry.registerChatInputCommand((builder) =>
