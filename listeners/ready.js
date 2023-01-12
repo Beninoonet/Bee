@@ -1,4 +1,5 @@
 const { Listener } = require('@sapphire/framework');
+const { Client } = require('discord.js');
 
 class ReadyListener extends Listener {
   constructor(context, options) {
@@ -8,9 +9,15 @@ class ReadyListener extends Listener {
       event: 'ready'
     });
   }
+  /**
+   * 
+   * @param {Client} client 
+   */
   run(client) {
     const { username, id } = client.user;
     this.container.logger.info(`Successfully logged in as ${username} (${id})`);
+
+    client.user.setActivity('Gros câlin <3', {type: 'WATCHING' })
   }
 }
 
