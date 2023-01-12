@@ -1,6 +1,6 @@
 const { Command } = require('@sapphire/framework');
 const { CommandInteraction, MessageEmbed } = require('discord.js');
-class PingCommand extends Command {
+class SCommand extends Command {
   constructor(context, options) {
     super(context, { ...options,
     requiredUserPermissions: ['SEND_MESSAGES'],
@@ -24,7 +24,7 @@ class PingCommand extends Command {
    */
   async chatInputRun(interaction) {
     const suggest = interaction.options.getString('suggestion');
-    const channel = interaction.guild.channels.cache.get('1060695527072735292')
+    const channel = interaction.guild.channels.cache.find(c => c.name === "suggestions")
     const Suembed = new MessageEmbed()
     .setTitle(`Nouvelle suggestions`)
     .setFooter({
@@ -32,7 +32,15 @@ class PingCommand extends Command {
         iconURL: `${interaction.user.displayAvatarURL()}`
     })
     .setDescription(`${suggest}`);
-
+    if(!channel){
+      interaction.guild.channels.create("suggestions");
+      this.container.logger.info(`Salon suggestions créé. Discord : ${interaction.guild.name}`);
+      interaction.reply({
+        content: `Le salon vient d'être créé, merci de réécrire votre suggestions !`,
+        ephemeral: true
+      })
+      return;
+    }
     const msg = await channel.send({
         embeds: [Suembed],
     });
@@ -47,5 +55,5 @@ class PingCommand extends Command {
   }
 }
 module.exports = {
-  PingCommand
+  SCommand
 };
