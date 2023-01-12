@@ -9,32 +9,37 @@ class UserCommand extends Command {
   }
   registerApplicationCommands(registry) {
     registry.registerChatInputCommand((builder) =>
-    builder.setName('userinfo').setDescription('Give an information of member')
+    builder.setName('userinfo').setDescription('Give an information of member').addUserOption(option =>
+			option
+				.setName('membre')
+				.setDescription('Afficher son avatar')
+				.setRequired(true))
+    
     );
   }
   /**
    * 
    * @param {Interaction} interaction 
+   * @param {GuildMember} membre
    */
   async chatInputRun(interaction) {
-    if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
-      const embed = new MessageEmbed()
-      .setColor(interaction.targetMember.displayHexColor)
-      .setThumbnail(interaction.targetMember.user.displayAvatarURL({ dynamic: true }))
-      .setTitle(`Profil de ${interaction.targetMember.user.username}`)
+      const membre = interaction.options.getMember('membre')
+      const Uembed = new MessageEmbed()
+      .setColor(membre.displayHexColor)
+      .setThumbnail(membre.displayAvatarURL({ dynamic: true }))
+      .setTitle(`Profil de ${membre.username}`)
       .addFields(
-        {name: `Mention`, value: `${interaction.targetMember.user}`, inline: true},
-        {name: `ID`, value: `${interaction.targetMember.user.id}`, inline: true},
-        {name: `Rôles`, value: `${interaction.targetMember.roles.cache.map(r => r).join(' ').replace('@everyone', " ") || "None"}`},
-        {name: `A rejoint le serveur le`, value: `<t:${parseInt(interaction.targetMember.joinedTimestamp / 1000)}:R>`, inline: true},
-        {name: `Compte créé le`, value: `<t:${parseInt(interaction.targetMember.user.createdTimestamp / 1000)}:R>`, inline: true},
+        {name: `Mention`, value: `${membre.user}`, inline: true},
+        {name: `ID`, value: `${membre.id}`, inline: true},
+        {name: `Rôles`, value: `${membre.roles.cache.map(r => r).join(' ').replace('@everyone', " ") || "None"}`},
+        {name: `A rejoint le serveur le`, value: `<t:${parseInt(membre.joinedTimestamp / 1000)}:R>`, inline: true},
+        {name: `Compte créé le`, value: `<t:${parseInt(membre.user.createdTimestamp / 1000)}:R>`, inline: true},
       )
       .setTimestamp()
       await interaction.reply({
-        embeds: [embed],
+        embeds: [Uembed],
         ephemeral: true
       })
-    }
   }
 }
 module.exports = {

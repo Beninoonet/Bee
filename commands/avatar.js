@@ -24,8 +24,8 @@ class AvatarCommand extends Command {
    * @param {Interaction} interaction 
    */
   async chatInputRun(interaction) {
-      const membre = interaction.options.getUser('membre')
-      const embed = new MessageEmbed()
+      const membre = interaction.options.getUser('membre' )
+      const Aembed = new MessageEmbed()
       .setColor(membre.displayHexColor)
       .setImage(membre.displayAvatarURL({ dynamic: true, size: 512 }))
       .setTitle(`Avatar de ${membre.tag}`)
@@ -34,7 +34,7 @@ class AvatarCommand extends Command {
         iconURL: `${interaction.user.displayAvatarURL({dynamic: true})}`
       })
       await interaction.reply({
-        embeds: [embed],
+        embeds: [Aembed],
       })
   }
 }
