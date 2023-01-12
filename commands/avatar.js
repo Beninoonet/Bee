@@ -1,6 +1,5 @@
 const { Command } = require('@sapphire/framework');
-const { ApplicationCommandType } = require('discord-api-types/v9');
-const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
+const { Interaction, MessageEmbed } = require('discord.js');
 class AvatarCommand extends Command {
   constructor(context, options) {
     super(context, {
@@ -10,28 +9,33 @@ class AvatarCommand extends Command {
   }
   registerApplicationCommands(registry) {
     registry.registerChatInputCommand((builder) =>
-    builder.setName('avatar').setDescription('Give an avatar of memver')
-    );
-  }
+    builder //
+    .setName('avatar')
+    .setDescription('Give an avatar of member')
+    .addUserOption(option =>
+			option
+				.setName('membre')
+				.setDescription('Afficher son avatar')
+				.setRequired(true))
+    
+)}
   /**
    * 
    * @param {Interaction} interaction 
    */
   async chatInputRun(interaction) {
-    if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
+      const membre = interaction.options.getUser('membre')
       const embed = new MessageEmbed()
-      .setColor(interaction.targetMember.displayHexColor)
-      .setImage(interaction.targetMember.user.displayAvatarURL({ dynamic: true, size: 512 }))
-      .setTitle(`Avatar de ${interaction.targetMember.displayName}`)
+      .setColor(membre.displayHexColor)
+      .setImage(membre.displayAvatarURL({ dynamic: true, size: 512 }))
+      .setTitle(`Avatar de ${membre.tag}`)
       .setFooter({
-        text: `${interaction.user.username}`,
+        text: `${interaction.user.tag}`,
         iconURL: `${interaction.user.displayAvatarURL({dynamic: true})}`
       })
       await interaction.reply({
         embeds: [embed],
-        ephemeral: true
       })
-    }
   }
 }
 module.exports = {
