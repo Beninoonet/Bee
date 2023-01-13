@@ -10,7 +10,7 @@ class ButtonHandler extends InteractionHandler {
   }
 
   parse(interaction) {
-    if (interaction.customId !== 'about_creator') return this.none();
+    if (interaction.customId !== 'about-creator') return this.none();
 
     return this.some();
   }
