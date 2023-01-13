@@ -9,7 +9,7 @@ class HugCommand extends Command {
     super(context, {
       ...options,
       description: 'Event to hug a member with gif',
-      cooldownDelay: 5_000 // 10_000 milliseconds (10 seconds)
+      cooldownDelay: 2_000 // 10_000 milliseconds (10 seconds)
       
     });
   }
