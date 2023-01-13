@@ -4,11 +4,11 @@ const { Command } = require('@sapphire/framework');
 
 const { ApplicationCommandType } = require('discord-api-types/v9');
 const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
-class LoveCommand extends Command {
+class HugCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
-      description: 'Event to send love a member with gif',
+      description: 'Event to dancing a member with gif',
       cooldownDelay: 2_000 // 10_000 milliseconds (10 seconds)
       
     });
@@ -26,13 +26,13 @@ class LoveCommand extends Command {
    */
   async contextMenuRun(interaction) {
     if (interaction.isUserContextMenu() && interaction.targetMember instanceof GuildMember) {
-      giphy.search({q: 'anime love', rating: 'g'}, function(err, res){
+      giphy.search({q: 'anime dancing', rating: 'g'}, function(err, res){
         var totalResponses = res.data.length;
         var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
         var responseFinal = res.data[responseIndex];
         const hugbed = new MessageEmbed()
         .setColor('RED')
-        .setDescription(`${interaction.user} envoie de l'amour à ${interaction.targetMember.user} 💖`)
+        .setDescription(`${interaction.user} fait un câlin à ${interaction.targetMember.user} 💖`)
         .setImage(responseFinal.images.fixed_height.url)
         
         interaction.reply({
@@ -45,5 +45,5 @@ class LoveCommand extends Command {
   }
 }
 module.exports = {
-  LoveCommand
+  HugCommand
 };
