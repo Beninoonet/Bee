@@ -4,7 +4,7 @@ const { Command } = require('@sapphire/framework');
 
 const { ApplicationCommandType } = require('discord-api-types/v9');
 const { GuildMember , Interaction, MessageEmbed } = require('discord.js');
-class HugCommand extends Command {
+class DanceCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
@@ -32,7 +32,7 @@ class HugCommand extends Command {
         var responseFinal = res.data[responseIndex];
         const hugbed = new MessageEmbed()
         .setColor('RED')
-        .setDescription(`${interaction.user} fait un câlin à ${interaction.targetMember.user} 💖`)
+        .setDescription(`${interaction.user} danse avec ${interaction.targetMember.user} `)
         .setImage(responseFinal.images.fixed_height.url)
         
         interaction.reply({
@@ -45,5 +45,5 @@ class HugCommand extends Command {
   }
 }
 module.exports = {
-  HugCommand
+  DanceCommand
 };

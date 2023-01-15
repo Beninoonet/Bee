@@ -32,8 +32,8 @@ class ButtonHandler extends InteractionHandler {
         components: [new MessageActionRow()
           .addComponents(
           new MessageButton().setLabel('SITE WEB (de merde)').setStyle('LINK').setURL('https://www.beninoonet.fr'),
-          new MessageButton().setLabel('RE:FUGE').setStyle('LINK').setURL('https://discord.gg/uDvYuhtgBM')
-          )]
+          new MessageButton().setLabel('RE:FUGE').setCustomId('about-refuge').setStyle('SUCCESS')
+          )],
     });
   }
 }
