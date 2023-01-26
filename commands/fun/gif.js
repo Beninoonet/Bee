@@ -33,9 +33,9 @@ class GifCommand extends Command {
     const gif = interaction.options.getString('gif');
     const member = interaction.options.getMember('membre')
     giphy.search({q: `${gif}`, rating: 'g'}, function(err, res){
-        var totalResponses = res.data.length;
-        var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
-        var responseFinal = res.data[responseIndex];
+        let totalResponses = res.data.length;
+        let responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
+        let responseFinal = res.data[responseIndex];
 
         const gifEmbed = new MessageEmbed()
         .setColor('RANDOM')

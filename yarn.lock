@@ -311,6 +311,13 @@
   dependencies:
     "follow-redirects" "^1.14.0"
 
+"axios@^0.25.0":
+  "integrity" "sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-0.25.0.tgz"
+  "version" "0.25.0"
+  dependencies:
+    "follow-redirects" "^1.14.7"
+
 "balanced-match@^1.0.0":
   "integrity" "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw=="
   "resolved" "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
@@ -641,7 +648,7 @@
   "resolved" "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
   "version" "2.0.6"
 
-"follow-redirects@^1.14.0":
+"follow-redirects@^1.14.0", "follow-redirects@^1.14.7":
   "integrity" "sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA=="
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.2.tgz"
   "version" "1.15.2"
@@ -831,6 +838,14 @@
   "version" "0.6.3"
   dependencies:
     "safer-buffer" ">= 2.1.2 < 3.0.0"
+
+"imgur@^2.2.0":
+  "integrity" "sha512-O6713RN9zaCdw7QuVEi0XRXjkEHTfKDkhjL1EEtlTW6VeRxVnj1JDQGBeqk2Bzj6d7WJp0WKdac2i0IO33nidQ=="
+  "resolved" "https://registry.npmjs.org/imgur/-/imgur-2.2.0.tgz"
+  "version" "2.2.0"
+  dependencies:
+    "axios" "^0.25.0"
+    "form-data" "^4.0.0"
 
 "imurmurhash@^0.1.4":
   "integrity" "sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA=="
